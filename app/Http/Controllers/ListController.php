@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\APIController;
 
-class ListingsController extends Controller
+class ListController extends Controller
 {
     public function index(Request $request)
     {
@@ -13,5 +13,10 @@ class ListingsController extends Controller
         // dd($characters);
 
         return view('characterList', compact('characters'));
+    }
+
+    public function getEpisode($url) {
+        $episode = str_replace('https://rickandmortyapi.com/api/episode/', '', $url);
+        return $episode;
     }
 }

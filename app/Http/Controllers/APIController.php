@@ -11,7 +11,7 @@ class APIController extends Controller
     // The API wrapper layer to handle functionalities within the Rick and Morty API
 
     public static function getAllCharacters($page = 1) : array {
-        $response = Http::asJson()->get('https://rickandmortyapi.com/api/character?page=' . $page);
-        return $response->json();
+        $response = Http::get('https://rickandmortyapi.com/api/character?page=' . $page)->json();
+        return $response;
     }
 }

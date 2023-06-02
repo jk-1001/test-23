@@ -1,4 +1,5 @@
 @extends('layout.master')
+@inject('api', 'App\Http\Controllers\ListController')
 
 @section('content')
 
@@ -18,6 +19,9 @@
                             <span>Species:</span> {{ $char['species'] }}<br>
                             <span>Origin:</span> {{ $char['origin']['name'] }}<br>
                             <span>Episodes:</span>
+                            @foreach($char['episode'] as $episode)
+                                <a href="{{ $episode }}">{{ $api->getEpisode($episode) }}</a>
+                            @endforeach
                         </p>
                     </div>
                     </div>
@@ -25,6 +29,9 @@
             @endforeach
         </div>
     </div>
+</section>
+<section id="pagination">
+
 </section>
 
 @endsection

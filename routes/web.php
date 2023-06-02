@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\APIController;
-use App\Http\Controllers\ListingsController;
+use App\Http\Controllers\ListController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +15,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [ListingsController::class, 'index']);
+Route::get('/', [ListController::class, 'index']);
