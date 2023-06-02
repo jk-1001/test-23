@@ -31,7 +31,13 @@
     </div>
 </section>
 <section id="pagination">
-
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mt-5 mb-5">
+                {{ $paginator->links('pagination::bootstrap-5') }}
+            </div>
+        </div>
+    </div>
 </section>
 
 @endsection
