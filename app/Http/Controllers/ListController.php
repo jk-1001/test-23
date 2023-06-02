@@ -23,10 +23,19 @@ class ListController extends Controller
             'per_page' => $perPage
         ]);
         $results = $response->json();
+        $count = 0;
 
-        $paginator = new LengthAwarePaginator($results['results'], $results['info']['count'], $perPage, $page, [
-            'path' => LengthAwarePaginator::resolveCurrentPath(),
-        ]);
+        // Catch and handle any error from the API
+        if(isset($results['error'])) {
+            $characters['results'] = [];
+        } else {
+            $count = $results['info']['count'];
+        }
+
+        // Check for any error
+        $paginator = new LengthAwarePaginator($results, $count, $perPage, $page, [
+                'path' => LengthAwarePaginator::resolveCurrentPath(),
+            ]);
 
         return view('characterList', compact(['characters', 'paginator']));
     }

@@ -9,7 +9,7 @@
 <section id="character-list">
     <div class="container">
         <div class="row">
-            @foreach($characters['results'] as $char)
+            @forelse($characters['results'] as $char)
                 <div class="col-12 col-md-3">
                     <div class="card">
                     <img src="{{ $char['image'] }}" class="card-img-top" alt="{{ $char['name'] }} from the show Rick and Morty">
@@ -26,7 +26,11 @@
                     </div>
                     </div>
                 </div>
-            @endforeach
+                @empty
+                <div class="alert alert-danger mt-5" role="alert">
+                    No characters found.
+                </div>
+            @endforelse
         </div>
     </div>
 </section>
