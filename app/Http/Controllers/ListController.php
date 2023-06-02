@@ -18,9 +18,13 @@ class ListController extends Controller
         $page = LengthAwarePaginator::resolveCurrentPage();
         $perPage = 20;
 
-        $response = Http::get('https://rickandmortyapi.com/api/character', [
+        $response = Http::retry(3, 100, throw: false)->get('https://rickandmortyapi.com/api/character', [
             'page' => $page,
-            'per_page' => $perPage
+            'per_page' => $perPage,
+            'name' => $request->name,
+            'status' => $request->status,
+            'species' => $request->species,
+            'gender' => $request->gender
         ]);
         $results = $response->json();
         $count = 0;
@@ -32,10 +36,9 @@ class ListController extends Controller
             $count = $results['info']['count'];
         }
 
-        // Check for any error
         $paginator = new LengthAwarePaginator($results, $count, $perPage, $page, [
-                'path' => LengthAwarePaginator::resolveCurrentPath(),
-            ]);
+            'path' => LengthAwarePaginator::resolveCurrentPath(),
+        ]);
 
         return view('characterList', compact(['characters', 'paginator']));
     }
