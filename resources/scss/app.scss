@@ -3,6 +3,15 @@ header {
     background: rgb(40, 97, 255);
     color: #fff;
     text-align: center;
+
+    a {
+        color: #fff;
+        text-decoration: none;
+
+        &:hover {
+            text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 42px #0fa, 0 0 82px #0fa,0 0 92px #0fa;
+        }
+    }
 }
 
 .card-text span {

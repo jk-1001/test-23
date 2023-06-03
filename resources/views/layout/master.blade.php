@@ -11,7 +11,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col">
-                    <h1>Rick and Morty Encyclopedia</h1>
+                    <h1><a href="/">Rick and Morty Encyclopedia</a></h1>
                 </div>
             </div>
         </div>
