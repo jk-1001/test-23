@@ -12,21 +12,12 @@ class ListController extends Controller
     public function index(Request $request)
     {
         $characters = APIController::getAllCharacters($request->page);
-        // dd($characters);
 
         // Paginate
         $page = LengthAwarePaginator::resolveCurrentPage();
         $perPage = 20;
 
-        $response = Http::retry(3, 100, throw: false)->get('https://rickandmortyapi.com/api/character', [
-            'page' => $page,
-            'per_page' => $perPage,
-            'name' => $request->name,
-            'status' => $request->status,
-            'species' => $request->species,
-            'gender' => $request->gender
-        ]);
-        $results = $response->json();
+        $results = APIController::getCharacterListPaging($request, $page, $perPage);
         $count = 0;
 
         // Catch and handle any error from the API
